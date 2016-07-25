@@ -4,13 +4,22 @@
     <title><%= full_title(yield(:title)) %></title>
     <%= stylesheet_link_tag "application", media: "all",
                                            "data-turbolinks-track" => true %>
-    <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
     <%= csrf_meta_tags %>
     <%= render 'layouts/shim' %>
+<style type="text/css">
+.message {
+  background-color: yellow;
+  height: 20px;
+  width: 100%;
+}
+</style>
   </head>
   <body>
     <%= render 'layouts/header' %>
     <div class="container">
+
+      <div class="message" id="info">
+      </div>
       <% flash.each do |key, value| %>
         <div class="alert alert-<%= key %>"><%= value %></div>
       <% end %>
@@ -18,5 +27,14 @@
       <%= render 'layouts/footer' %>
       <%= debug(params) if Rails.env.development? %>
     </div>
+
+<script type="text/javascript">
+var info = document.getElementById('info');
+//console.log(info);
+//debugger;
+var textNode = document.createTextNode('Hello');
+info.appendChild(textNode);
+</script>
+
   </body>
 </html>
